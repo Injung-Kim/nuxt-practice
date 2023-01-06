@@ -19,8 +19,7 @@
 </template>
 
 <script>
-import axios from 'axios'
-import {fetchProductBykeyword} from '@/api/index'
+import {fetchProjects, fetchProductBykeyword} from '@/api/index'
 import SearchInput from '@/components/searchInput.vue'
 // import Logo from '@/components/NuxtLogo.vue'
 // import ProductList from '~/components/ProductList.vue'
@@ -33,7 +32,8 @@ export default {
   //   Logo
   // }
   async asyncData(){
-     const response = await axios.get('http://localhost:3000/products')
+    // console.log(process.env.baseURL)
+     const response = await fetchProjects()
      const products = response.data.map((item) => ({
         ...item,
         imageUrl : `${item.imageUrl}?random=${Math.random()}`
@@ -45,8 +45,8 @@ export default {
       searchKeyword : ''
     }
   }, 
-  async created(){
-    },
+  created(){
+      },
   methods : {
     moveToDetailpage(id){
       this.$router.push(`detail/${id}`)

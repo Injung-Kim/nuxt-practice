@@ -1,7 +1,11 @@
 export default {
   // server
   server : {
-    port : 5000
+    port : process.env.NODE_ENV === 'production' ? null :5000
+  },
+  // env config
+  env:{
+    baseURL : process.env.NODE_ENV === 'production' ? 'https://my-json-server.typicode.com/injung-kim/nuxt-practice-api' : 'http://localhost:3000'
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -41,4 +45,5 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
 }
